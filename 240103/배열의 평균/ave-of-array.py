@@ -31,4 +31,4 @@ for num in col_avg:
 print()
 
 # 전체 평균 출력
-print(total_sum / 8.0)
+print(round(total_sum / 8.0, 1))
