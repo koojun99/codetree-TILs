@@ -1,4 +1,6 @@
 string = input()
 n = int(input())
+string = string.replace(" ","")
+extracted = string[-n:]
 
-print(string[:-n-2:-1])
+print(extracted[::-1])
