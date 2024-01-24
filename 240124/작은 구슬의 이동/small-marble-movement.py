@@ -10,7 +10,7 @@ d = {'D': 0, 'R': 1, 'L': 2, 'U': 3}
 dir_num = d[direction]
 
 def in_range(r, c):
-    return 1 <= r < n and 1 <= c < n
+    return 1 <= r <= n and 1 <= c <= n
 
 for i in range(t):
     nr = r + dr[dir_num]
