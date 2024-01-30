@@ -19,4 +19,6 @@ for j in range(n):
         grid[i][j] = column[i]
 
 for row in grid:
-    print(' '.join(map(str, row)))
+    for elem in row:
+        print(elem, end = " ")
+    print()
