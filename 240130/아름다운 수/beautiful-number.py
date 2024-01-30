@@ -1,27 +1,15 @@
-def is_beautiful(arr):
-    i = 0
-    while i < len(arr):
-        num = arr[i]
-        count = 0
-        while i < len(arr) and arr[i] == num:
-            count += 1
-            i += 1
-        if count != num:
-            return False
-    return True
+def backtrack(index, n, current, result):
+    if index == n:
+        result.add(''.join(map(str, current)))
+        return
+    for num in range(1, 5):
+        if index + num <= n:  # 현재 위치에서 num 만큼 연속 가능한지 확인
+            backtrack(index + num, n, current + [num] * num, result)
 
-def count_beautiful_numbers(n, arr=[], count=0):
-    if len(arr) == n:
-        if is_beautiful(arr):
-            return 1
-        else:
-            return 0
-    total = 0
-    for i in range(1, 5):
-        arr.append(i)
-        total += count_beautiful_numbers(n, arr, count)
-        arr.pop()
-    return total
+def count_beautiful_numbers(n):
+    result = set()
+    backtrack(0, n, [], result)
+    return len(result)
 
 n = int(input())
 print(count_beautiful_numbers(n))
