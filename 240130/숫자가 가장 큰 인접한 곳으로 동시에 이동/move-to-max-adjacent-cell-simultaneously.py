@@ -25,7 +25,8 @@ for _ in range(t):
     marbles = []
     for r in range(n):
         for c in range(n):
+            # 겹치는 구슬이 없는 경우만 남김
             if temp_grid[r][c] == 1:
-                marbles.append((r, c))
+                marbles.append((r + 1, c + 1)) # 위치를 1-indexed로 조정
 
 print(len(marbles))
