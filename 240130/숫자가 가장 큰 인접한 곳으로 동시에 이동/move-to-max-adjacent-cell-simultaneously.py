@@ -17,13 +17,15 @@ def find_next(r, c):
     return next_pos
 
 for _ in range(t):
-    new_positions = {}
+    temp_grid = [[0 for _ in range(n)] for _ in range(n)]
     for r, c in marbles:
         nr, nc = find_next(r - 1, c - 1)
-        if (nr, nc) in new_positions:
-            new_positions[(nr, nc)] = 0  # Remove marbles in the same position
-        else:
-            new_positions[(nr, nc)] = 1
-    marbles = [pos for pos, count in new_positions.items() if count > 0]
+        temp_grid[nr][nc] += 1
+
+    marbles = []
+    for r in range(n):
+        for c in range(n):
+            if temp_grid[r][c] == 1:
+                marbles.append((r, c))
 
 print(len(marbles))
