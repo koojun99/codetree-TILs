@@ -1,9 +1,10 @@
 n = int(input())
-dp = [0] * 45
-dp[1] = 1
-dp[2] = 1
+def fibonacci(n, memo={}):
+    if n in memo:
+        return memo[n]
+    if n <= 2:
+        return 1
+    memo[n] = fibonacci(n-1, memo) + fibonacci(n-2, memo)
+    return memo[n]
 
-for i in range(3, n + 1):
-    dp[i] = dp[i - 1] + dp[i - 2]
-
-print(dp[n])
+print(fibonacci(n))
