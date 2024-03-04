@@ -1,4 +1,6 @@
-line, char = tuple(input().split())
+line, char = input().split()
 
-
-print(line.find(char))
+if line.find(char) == -1:
+    print("No")
+else:
+    print(line.find(char))
