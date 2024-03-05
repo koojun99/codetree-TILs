@@ -9,4 +9,4 @@ for i in range(len(b)):
         numB = int(b[:i])
         break
 
-print(numA+numB)
+print(numA + numB)
