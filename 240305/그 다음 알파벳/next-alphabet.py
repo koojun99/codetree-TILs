@@ -1,3 +1,5 @@
 char = input()
-ascii = ord(char)
-print(chr((ascii+1)%127))
+ascii = ord(char)+1
+if char == 'z':
+    ascii = ord('a')
+print(chr((ascii)))
