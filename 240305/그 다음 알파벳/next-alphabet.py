@@ -1,3 +1,3 @@
 char = input()
 ascii = ord(char)
-print(chr((ascii+1)))
+print(chr((ascii+1)%127))
