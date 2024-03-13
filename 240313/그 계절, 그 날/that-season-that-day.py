@@ -9,18 +9,16 @@ def season(month):
         print("Fall")
 
 def isYoon(year):
-    if year % 4 == 0 and year % 100 != 0:
-        return True
-    if year % 4 == 0 and year % 100 == 0:
-        if year % 400 == 0:
-            return True
     if year % 4 == 0:
+        if year % 100 == 0:
+            if year % 400 == 0:
+                return True
+            return False
         return True
     return False
 
 def isValid(year, month, day):
     thirty = [4, 6, 9, 11]
-        
     if month == 2:
         if isYoon(year):
             if day > 29:
