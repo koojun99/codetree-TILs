@@ -16,4 +16,5 @@ def operation(a, o, c):
         return False
 if not operation(a,o,c):
     operation(a, o, c)
-print(a + " " + o + " " + c + " = " + str(operation(a,o,c)))
+else:
+    print(a + " " + o + " " + c + " = " + str(operation(a,o,c)))
