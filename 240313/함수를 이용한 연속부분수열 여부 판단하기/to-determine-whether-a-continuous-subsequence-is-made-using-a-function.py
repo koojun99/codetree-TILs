@@ -3,7 +3,7 @@ a = list(map(int, input().split()))
 b = list(map(int, input().split()))
 isValid = False
 def is_partial(a, b, pos):
-    if a[pos:len(b)+1] == b:
+    if a[pos:pos + len(b)] == b:
         return True
     return False
 
