@@ -6,6 +6,6 @@ def max_num(i, num, nums):
     return max_num(i+1, num, nums)
 
 n = int(input())
-num = 0
 nums = list(map(int, input().split()))
+num = nums[0]
 print(max_num(0, num, nums))
