@@ -1,7 +1,8 @@
 a, b, c = map(int, input().split())
 day, hour, mins = 11, 11, 11
 total = 0
-
+if a < 11 or b < 11 or c < 11:
+    print(-1)
 while (day, hour, mins) != (a, b, c):
     total += 1
     mins += 1
