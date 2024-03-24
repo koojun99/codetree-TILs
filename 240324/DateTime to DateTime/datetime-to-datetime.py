@@ -1,7 +1,7 @@
 a, b, c = map(int, input().split())
 day, hour, mins = 11, 11, 11
 total = 0
-if a < 11 or (hour*60 + mins) < 671:
+if a < 11 or (a == 11 and (b < 11 or (b == 11 and c < 11))):
     print(-1)
 else:
     while (day, hour, mins) != (a, b, c):
