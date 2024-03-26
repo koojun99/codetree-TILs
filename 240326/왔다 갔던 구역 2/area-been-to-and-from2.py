@@ -1,6 +1,7 @@
 n = int(input())
 space = [0]*10*n
 current = 10*n // 2
+space[current] = 1
 for _ in range(n):
     dist, direction = input().split()
     if direction == "R":
