@@ -1,21 +1,30 @@
 n = int(input())
-space = [0]*10*n
-current = 10*n // 2
-space[current] = 1
+current = 0
+movements = []
+
+# 이동 명령 처리
 for _ in range(n):
     dist, direction = input().split()
+    dist = int(dist)
     if direction == "R":
-        for _ in range(int(dist)):
-            space[current] += 1
-            current += 1
-    if direction == "L":
-        for _ in range(int(dist)):
-            space[current] += 1
-            current -= 1
-count = 0
+        movements.append((current, current + dist))
+        current += dist
+    elif direction == "L":
+        movements.append((current - dist, current))
+        current -= dist
 
-for num in space:
-    if num >= 2:
-        count += 1
+# 각 구간의 방문 횟수를 기록할 딕셔너리
+visited = {}
 
-print(count)
+# 각 이동에 대해 방문 횟수 업데이트
+for start, end in movements:
+    for point in range(start, end):
+        if point in visited:
+            visited[point] += 1
+        else:
+            visited[point] = 1
+
+# 2번 이상 방문한 구간의 길이 계산
+overlapped_length = sum(1 for visit in visited.values() if visit > 1)
+
+print(overlapped_length)
