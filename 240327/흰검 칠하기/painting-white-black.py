@@ -32,8 +32,7 @@ white_count = 0
 for color_counts in colors.values():  # colors 딕셔너리의 모든 값에 대해 반복
     if color_counts[0] >= 2 and color_counts[1] >= 2:  # 검은색과 흰색이 모두 2 이상인 경우
         grey_count += 1  # grey_count 증가
-        continue
-    if color_counts[-1] == "B":
+    elif color_counts[-1] == "B":
         black_count += 1
     elif color_counts[-1] == "W":
         white_count += 1
