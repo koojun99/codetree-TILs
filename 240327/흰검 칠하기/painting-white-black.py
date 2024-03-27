@@ -1,36 +1,44 @@
 n = int(input())
-movements = []
-colors = {}
+tiles = {}
+
 current = 0
-
 for _ in range(n):
-    dist, direction = input().split()
-    dist = int(dist)
-    if direction == "R":
-        movements.append((current, current + dist, "B"))
-        current += dist
+    x, direction = input().split()
+    distance = int(x)
+
+    if direction == 'L':
+        start = current - distance
+        end = current
+        current -= distance
+    else:  # dir == 'R'
+        start = current
+        end = current + distance
+        current += distance  # Update current position for 'R'
+
+    for pos in range(start, end):
+        if pos not in tiles:
+            tiles[pos] = {'B': 0, 'W': 0, 'last': None}
         
-    elif direction == "L":
-        movements.append((current - dist, current, "W"))
-        current -= dist
+        # Update color counts and last painted color
+        if direction == 'R':
+            tiles[pos]['B'] += 1
+            tiles[pos]['last'] = 'B'
+        else:  # dir == 'L'
+            tiles[pos]['W'] += 1
+            tiles[pos]['last'] = 'W'
+            
+        
 
-for start, end, color in movements:
-    for point in range(start, end):  # 모든 이동에 대해 범위 처리
-        if point not in colors:
-            colors[point] = {'B': 0, 'W': 0, 'last': None}
-        colors[point][color] += 1  # 해당 색깔 횟수 증가
-        colors[point]['last'] = color  # 마지막 색깔 기록
+# Initialize counts
+white_count, black_count, grey_count = 0, 0, 0
 
-grey_count = 0
-black_count = 0
-white_count = 0
-
-for color_counts in colors.values():
-    if color_counts['B'] >= 2 and color_counts['W'] >= 2:
+# Determine counts based on last painted color and whether a tile turned grey
+for tile in tiles.values():
+    if tile['B'] >= 2 and tile['W'] >= 2:
         grey_count += 1
-    elif color_counts['last'] == "B":
+    elif tile['last'] == 'B':
         black_count += 1
-    elif color_counts['last'] == "W":
+    elif tile['last'] == 'W':
         white_count += 1
 
 print(white_count, black_count, grey_count)
