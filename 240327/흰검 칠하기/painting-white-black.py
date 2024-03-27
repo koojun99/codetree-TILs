@@ -7,15 +7,15 @@ for _ in range(n):
     distance = int(x)
 
     if direction == 'L':
-        start = current - distance
+        start = current - distance + 1
         end = current
-        current -= distance
+        current =  current - distance + 1
     else:  # dir == 'R'
         start = current
-        end = current + distance
-        current += distance  # Update current position for 'R'
+        end = current + distance - 1
+        current = current + distance - 1   # Update current position for 'R'
 
-    for pos in range(start, end):
+    for pos in range(start, end+1):
         if pos not in tiles:
             tiles[pos] = {'B': 0, 'W': 0, 'last': None}
         
