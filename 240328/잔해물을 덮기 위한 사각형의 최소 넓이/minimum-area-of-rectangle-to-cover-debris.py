@@ -25,6 +25,10 @@ for i in range(x1, x2):
             if grid[i+offset][j+offset] == 1:
                 new_x.append(i)
                 new_y.append(j)
-answer_x = max(new_x) - min(new_x) + 1
-answer_y = max(new_y) - min(new_y) + 1
-print(answer_x * answer_y)
+
+if not new_x or not new_y:  # 겹치는 부분이 첫 번째 직사각형 전체를 덮는 경우
+    print(0)
+else:
+    answer_x = max(new_x) - min(new_x) + 1
+    answer_y = max(new_y) - min(new_y) + 1
+    print(answer_x * answer_y)
