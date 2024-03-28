@@ -14,5 +14,6 @@ for i in range(n):
         count = 1
     else:
         count += 1
+counts.append(count)
     
 print(max(counts))
