@@ -25,12 +25,11 @@ for _ in range(m):
         elif direction == "L":
             currentB -= 1
         spotB.append(currentB)
-i = 0
-while True:
-    if i > min(len(spotA), len(spotB)):
-        print(-1)
+
+meeting_time = -1  # 만나지 않으면 -1
+for i in range(1, min(len(spotA), len(spotB))):
+    if spotA[i] == spotB[i]:
+        meeting_time = i
         break
-    if i > 0 and spotA[i] == spotB[i]:
-        print(i)
-        break
-    i += 1
+
+print(meeting_time)
