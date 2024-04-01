@@ -1,49 +1,40 @@
 n, m = map(int, input().split())
-movementsA = []
-movementsB = []
+spotA = []
+spotB = []
+currentA = 0
+currentB = 0
+count = 0
 
-# 로봇 A의 움직임 입력 받기
+spotA.append(currentA)
 for _ in range(n):
     distance, direction = input().split()
-    movementsA.append((int(distance), direction))
+    distance = int(distance)
+    for _ in range(distance):
+        if direction == "R":
+            currentA += 1
+        elif direction == "L":
+            currentA -= 1
+        spotA.append(currentA)
 
-# 로봇 B의 움직임 입력 받기
+spotB.append(currentB)
 for _ in range(m):
     distance, direction = input().split()
-    movementsB.append((int(distance), direction))
+    distance = int(distance)
+    for _ in range(distance):
+        if direction == "R":
+            currentB += 1
+        elif direction == "L":
+            currentB -= 1
+        spotB.append(currentB)
 
-# 각 시간 단위별 로봇 A와 B의 위치 추적
-positionA = positionB = 0
-time = 0
-meet_count = 0
-previous_meet = False
+length = max(len(spotA), len(spotB))
 
-# 로봇 A와 B의 움직임을 시뮬레이션
-while movementsA or movementsB:
-    if movementsA:
-        distance, direction = movementsA.pop(0)
-        while distance > 0:
-            positionA += 1 if direction == 'R' else -1
-            distance -= 1
-            time += 1
-            if positionA == positionB:
-                if not previous_meet:
-                    meet_count += 1
-                    previous_meet = True
-            else:
-                previous_meet = False
-    
-    if movementsB:
-        distance, direction = movementsB.pop(0)
-        while distance > 0:
-            positionB += 1 if direction == 'R' else -1
-            distance -= 1
-            time += 1
-            if positionA == positionB:
-                if not previous_meet:
-                    meet_count += 1
-                    previous_meet = True
-            else:
-                previous_meet = False
+# 더 짧은 리스트를 더 긴 리스트의 길이에 맞게 확장
+spotA += [spotA[-1]] * (length - len(spotA))
+spotB += [spotB[-1]] * (length - len(spotB))
 
-print(meet_count)
+for i in range(1, length):
+    if spotA[i-1] != spotB[i-1] and spotA[i] == spotB[i]:
+        count += 1
+
+print(count)
