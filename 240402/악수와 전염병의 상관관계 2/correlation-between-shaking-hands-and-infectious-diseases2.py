@@ -1,36 +1,45 @@
-N, K, P, T = map(int, input().split())
+# 클래스 선언
+class Shake:
+    def __init__(self, time, person1, person2):
+        self.time, self.person1, self.person2 = time, person1, person2
 
-# 전염 상태와 전염 가능한 악수 횟수를 기록
-infected = {P: K}
-transmission_count = {i: 0 for i in range(1, N+1)}  # 각 개발자별 전파 횟수 기록
+# 변수 선언 및 입력
+n, k, p, t = tuple(map(int, input().split()))	
+shakes = []
+for _ in range(t):
+    time, person1, person2 = tuple(map(int, input().split()))
+    shakes.append(Shake(time, person1, person2))
 
-handshakes = []
-for _ in range(T):
-    t, x, y = map(int, input().split())
-    handshakes.append((t, x, y))
+shake_num = [0] * (n + 1)
+infected = [False] * (n + 1)
 
-handshakes.sort()  # 악수 정보를 시간 순으로 정렬
+infected[p] = True
 
-for _, x, y in handshakes:
-    # 감염 상태 업데이트
-    if x in infected and infected[x] > 0:
-        infected[y] = K
-    if y in infected and infected[y] > 0:
-        infected[x] = K
-    
-    # 악수를 통한 전파 횟수 업데이트
-    if x in infected:
-        transmission_count[x] += 1
-        if transmission_count[x] >= K:
-            infected[x] = 0  # 더 이상 전파할 수 없음
-    if y in infected:
-        transmission_count[y] += 1
-        if transmission_count[y] >= K:
-            infected[y] = 0  # 더 이상 전파할 수 없음
+# Custom Comparator를 활용한 정렬
+shakes.sort(key = lambda x: x.time)
 
-# 최종 감염 상태 출력
-for i in range(1, N + 1):
-    if i in infected:
-        print(1, end="")
-    else:
-        print(0, end="")
+# 각 악수 횟수를 세서,
+# K번 초과로 악수를 했을 시 전염시키지 않습니다.
+for shake in shakes:
+	target1 = shake.person1
+	target2 = shake.person2
+	
+	# 감염되어 있을 경우 악수 횟수를 증가시킵니다.
+	if infected[target1]:
+		shake_num[target1] += 1
+	if infected[target2]:
+		shake_num[target2] += 1
+	
+	# target1이 감염되어 있고 아직 K번 이하로 악수했다면 target2를 전염시킵니다.
+	if shake_num[target1] <= k and infected[target1]:
+		infected[target2] = True
+	
+	# target2가 감염되어 있고 아직 K번 이하로 악수했다면 target1을 전염시킵니다.
+	if shake_num[target2] <= k and infected[target2]:
+		infected[target1] = True
+		
+for i in range(1, n + 1):
+	if infected[i]:
+		print(1, end="")
+	else:
+		print(0, end="")
