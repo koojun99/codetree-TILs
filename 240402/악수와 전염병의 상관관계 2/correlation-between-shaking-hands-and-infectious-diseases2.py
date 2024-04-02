@@ -12,12 +12,16 @@ events.sort()
 
 for time, a, b in events:
     if people[a-1] == 1 or people[b-1] == 1:
+        if people[a-1] == 1 and people[b-1] == 1:
+            count[a-1] = min(k, count[a-1]+1)
+            count[b-1] += min(k, count[b-1]+1)
+            
         if people[a-1] == 1 and count[a-1] < k:
             people[b-1] = 1
-            count[a-1] += 1
+            count[a-1] = min(k, count[a-1]+1)
         if people[b-1] == 1 and count[b-1] < k:
             people[a-1] = 1
-            count[b-1] += 1
+            count[b-1] += min(k, count[b-1]+1)
 
 for elem in people:
     print(elem, end="")
