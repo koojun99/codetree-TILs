@@ -8,7 +8,7 @@ for _ in range(t):
     time, a, b = map(int, input().split())
     events.append((time, a, b))
 
-events.sort(key=lambda x: x[0])
+events.sort()
 
 for time, a, b in events:
     if people[a-1] == 1 or people[b-1] == 1:
