@@ -7,14 +7,15 @@ x, y = 0, 0
 num = 1
 
 def isValid(x, y):
-    return 0 <= x < n and 0 <= y < n and 0 <= x < m and 0 <= y < m
+    return 0 <= x < n and 0 <= y < m
 
 answer[x][y] = 1
 for i in range(2, n*m + 1):
     nx, ny = x + dxs[dir_num], y + dys[dir_num]
     if not isValid(nx, ny) or answer[nx][ny] != 0:
         dir_num = (dir_num + 1) % 4
-    x, y = x + dxs[dir_num], y + dys[dir_num]
+        nx, ny = x + dxs[dir_num], y + dys[dir_num]  # 방향 전환 후의 새로운 위치 계산
+    x, y = nx, ny
     answer[x][y] = i
 
 for row in answer:
