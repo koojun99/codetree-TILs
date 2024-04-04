@@ -7,7 +7,8 @@ x, y = 0, 0
 num = 1
 
 def isValid(x, y):
-    return 0 <= x < n and 0 <= y < n
+    return 0 <= x < n and 0 <= y < n and 0 <= x < m and 0 <= y < m
+
 answer[x][y] = 1
 for i in range(2, n*m + 1):
     nx, ny = x + dxs[dir_num], y + dys[dir_num]
