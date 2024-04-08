@@ -11,7 +11,7 @@ def isComfort(x, y):
         nx, ny = x + dx, y + dy
         if isValid(nx, ny) and grid[nx][ny] == 1:
             count += 1
-    if count >= 3:
+    if count == 3:
         return True
     else:
         return False
