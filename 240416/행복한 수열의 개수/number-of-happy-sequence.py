@@ -8,10 +8,10 @@ def isValid(arr, m):
     for i in range(len(arr)):
         if i > 0 and arr[i] == arr[i-1]:
             consecutive += 1
-            if consecutive >= m:
-                return True
         else:
             consecutive = 1
+        if consecutive >= m:
+            return True
     return False
 
 for row in grid:
