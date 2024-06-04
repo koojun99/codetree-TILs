@@ -27,10 +27,10 @@ def bfs():
             if in_range(nx, ny) and not visited[nx][ny]:
                 push(nx, ny, step[x][y] + 1)
 
-push(r1, c1, 0)
+push(r1-1, c1-1, 0)
 bfs()
 
-if visited[r2][c2] == True:
-    print(step[r2][c2])
+if visited[r2-1][c2-1] == True:
+    print(step[r2-1][c2-1])
 else:
     print(-1)
